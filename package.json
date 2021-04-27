@@ -11,20 +11,9 @@
     "lint": "eslint . --ext .ts",
     "test": "jest --watchAll --colors --coverage",
     "test:ci": "CI=true jest --ci --colors --coverage --passWithNoTests",
-    "sqs:up": "docker-compose -f docker-compose.yml up -d sqs",
-    "sqs:list-queues": "aws sqs list-queues --endpoint-url http://localhost:9324 --profile profile_name --region region",
-    "sqs:create-queue": "aws sqs create-queue --endpoint-url http://localhost:9324 --profile profile_name --region region --queue-name queue_name[.fifo] [--attributes FifoQueue=true,ContentBasedDeduplication=true]",
-    "sqs:receive-messages": "aws sqs receive-message --endpoint-url http://localhost:9324 --profile profile_name --region region --queue-url http://localhost:9324/queue/queue_name[.fifo] --max-number-of-messages 10 --visibility-timeout 0",
-    "sqs:delete-queue": "aws sqs delete-queue --endpoint-url http://localhost:9324 --profile profile_name --region region --queue-url http://localhost:9324/queue/queue_name[.fifo]",
-    "db:up": "docker-compose -f docker-compose.yml up -d postgres",
-    "db:drop": "npx sequelize-cli db:drop",
-    "db:create": "npx sequelize-cli db:create",
-    "db:migrate": "npx sequelize-cli db:migrate",
-    "dynamodb:up": "docker-compose -f docker-compose.yml up -d dynamodb",
     "sonarqube:up": "docker-compose -f docker-compose.yml up -d sonarqube",
     "sonarqube-scanner": "node sonar-project.js",
-    "sonarqube-verify": "sonarqube-verify",
-    "containers:down": "docker-compose -f docker-compose.yml down"
+    "sonarqube-verify": "sonarqube-verify"
   },
   "engines": {
     "node": ">=12.0.0"
@@ -57,6 +46,7 @@
     "@redtea/serverless-env-generator": "^1.5.3",
     "@types/aws-lambda": "^8.10.63",
     "@types/bluebird": "^3.5.32",
+    "@types/http-errors": "1.8.0",
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.8",
     "@types/validator": "^13.1.0",
@@ -90,12 +80,18 @@
     "webpack-node-externals": "^2.5.2"
   },
   "dependencies": {
+    "@middy/core": "2.1.1",
+    "@middy/error-logger": "2.1.1",
+    "@middy/http-json-body-parser": "2.1.1",
+    "@middy/input-output-logger": "2.1.1",
+    "@middy/validator": "2.1.1",
     "@redtea/format-axios-error": "^2.0.2",
     "alai": "^1.0.3",
     "aws-sdk": "^2.866.0",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "dynamoose": "^2.7.3",
+    "http-errors": "1.8.0",
     "node-uuid": "^1.4.8",
     "nodemailer": "^6.5.0",
     "reflect-metadata": "^0.1.13",

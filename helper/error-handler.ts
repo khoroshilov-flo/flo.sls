@@ -39,7 +39,7 @@ export function errorHandler(caughtError: Error | HttpError | AxiosError | Runti
   throw `[${supportedHttpError.statusCode}] ${supportedHttpError.name}. ${supportedHttpError.message}`;
 }
 
-function formatUnknownError(error: Error | AxiosError | RuntimeError): HttpError {
+export function formatUnknownError(error: Error | AxiosError | RuntimeError): HttpError {
   const axiosError = (<AxiosError>error).isAxiosError && format(<AxiosError>error);
 
   if (error instanceof InputValidationError) {

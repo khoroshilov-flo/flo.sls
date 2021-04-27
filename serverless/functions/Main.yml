@@ -1,0 +1,12 @@
+Error:
+  handler: api/main.error
+  events:
+    - httpApi:
+        method: GET
+        path: /error
+Hello:
+  handler: api/main.hello
+  events:
+    - httpApi:
+        method: POST
+        path: /hello

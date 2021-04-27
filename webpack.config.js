@@ -44,9 +44,5 @@ module.exports = {
   },
   plugins: [
     new Dotenv(),
-    new CopyWebpackPlugin({
-      patterns: [{ from: 'bin', to: 'bin' }],
-    }),
-    new WebpackPermissionsPlugin(),
   ],
 };
